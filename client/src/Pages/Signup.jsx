@@ -2,6 +2,7 @@ import React, { useState,useEffect } from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import "./page.css";
+import {motion} from "framer-motion";
 
 function Signup() {
   const navigate = useNavigate();
@@ -31,7 +32,11 @@ function Signup() {
 
   return (
     <>
-      <div className="row" id="form">
+      <motion.div initial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: {duration: 0.2} }}
+         className="row"
+          id="form">
         <div className="col-md-3 col-lg-4"></div>
         <form
           onSubmit={submitHandler}
@@ -125,7 +130,7 @@ function Signup() {
           <input type="submit" value="Register" className="btn" />
         </form>
         <div className="col-md-6 col-lg-4"></div>
-      </div>
+      </motion.div>
     </>
   );
 }

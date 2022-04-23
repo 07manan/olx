@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import "./page.css";
 import Items from '../Components/Items';
+import {motion} from "framer-motion";
 
 function Profile() {
   const navigate = useNavigate();
@@ -33,7 +34,10 @@ function Profile() {
 
   return (
     <>
-      <div className="row page container">
+      <motion.div initial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: {duration: 0.2} }} 
+        className="row page container">
         <div className="col-8 row myitems">
           <h1>My Items</h1>
           {itemList.map((value,key)=>{
@@ -76,7 +80,7 @@ function Profile() {
           <input type="submit" value="Submit" className='btn' />
           </form>
         </div>
-      </div>
+      </motion.div>
     </>
   )
 }

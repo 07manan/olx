@@ -23,13 +23,13 @@ function Navbar({ logout }) {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav me-auto">
-              <li className="nav-item mx-2">
+              <li className="nav-item mx-1">
                 <NavLink className="nav-link " activeclassname="active" to="/">
                   Home
                 </NavLink>
               </li>
               {!localStorage.getItem("User") ? (
-                <li className="nav-item">
+                <li className="nav-item mx-1">
                   <NavLink
                     className="nav-link nav-login"
                     activeclassname="active"
@@ -43,7 +43,7 @@ function Navbar({ logout }) {
               )}
 
               {!localStorage.getItem("User") ? (
-                <li className="nav-item">
+                <li className="nav-item mx-1">
                   <NavLink
                     className="nav-link"
                     activeclassname="active"
@@ -56,7 +56,7 @@ function Navbar({ logout }) {
                 ""
               )}
               {localStorage.getItem("User") ? (
-                <li className="nav-item">
+                <li className="nav-item mx-1">
                   <NavLink
                     className="nav-link"
                     activeclassname="active"
@@ -69,12 +69,21 @@ function Navbar({ logout }) {
                 ""
               )}
             </ul>
-            <ul className="me-5 logout" >
+            {/* <ul className="me-5 logout" >
               {localStorage.getItem("User") ? (
                 <li>
                   <button id="logout" onClick={logout}>
                     Logout
                   </button>
+                </li>
+              ) : (
+                ""
+              )}
+            </ul> */}
+            <ul className="me-5 navbar-nav logout"  >
+              {localStorage.getItem("User") ? (
+                <li className="nav-item"  >
+                  <p id="logout" onClick={logout} >Logout</p>
                 </li>
               ) : (
                 ""
