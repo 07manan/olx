@@ -6,7 +6,8 @@
   "type": "module",
   "proxy": "http://localhost:5000",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "startdev":"node index.js"
   },
   "keywords": [],
   "author": "",

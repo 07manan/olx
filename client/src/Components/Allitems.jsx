@@ -8,7 +8,7 @@ function Allitems({ value }) {
         <div className="item easein col-3">
           <p>{value.name}</p>
           <p>{value.price}</p>
-          {value.unsold ? <p1>Not sold</p1> : <p2>Sold</p2>}
+          {value.unsold ? <p style={{ color:"rgb(0, 209, 0)", fontWeight:"600" }} >Not sold</p> : <p style={{ color:"red", fontWeight:"600"}} >Sold</p>}
           <button className="btn2">
             <a
               className="link"

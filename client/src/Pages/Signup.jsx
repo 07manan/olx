@@ -11,7 +11,7 @@ function Signup() {
   const submitHandler = (e) => {
     e.preventDefault();
     if(formdetails.password === formdetails.confirmPassword){
-      axios.post('http://localhost:5000/user/register',{
+      axios.post(`${process.env.REACT_APP_DB_URL}/user/register`,{
         firstName: formdetails.firstName,
         lastName: formdetails.lastName,
         email: formdetails.email,

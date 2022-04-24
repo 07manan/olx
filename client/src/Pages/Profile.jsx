@@ -15,7 +15,7 @@ function Profile() {
     }
   });
   useEffect(()=>{
-    axios.get(`http://localhost:5000/product/getproducts/${JSON.parse(localStorage.getItem("User"))}`).then((Response)=>{
+    axios.get(`${process.env.REACT_APP_DB_URL}/product/getproducts/${JSON.parse(localStorage.getItem("User"))}`).then((Response)=>{
       setItemlist(Response.data)
     })
   },[]);
@@ -24,7 +24,7 @@ function Profile() {
   const [itemdetails, setItemdetails] = useState({ itemName:"", itemPrice:"" })
   const addProduct = (e) =>{
     e.preventDefault();
-    axios.post(`http://localhost:5000/product/addproduct/${itemdetails.itemName}/${JSON.parse(localStorage.getItem("User"))}/${itemdetails.itemPrice}`);
+    axios.post(`${process.env.REACT_APP_DB_URL}/product/addproduct/${itemdetails.itemName}/${JSON.parse(localStorage.getItem("User"))}/${itemdetails.itemPrice}`);
     setItemdetails({
       itemName:"",
       itemPrice:""

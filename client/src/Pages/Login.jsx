@@ -12,7 +12,7 @@ function Login({ updateUser, user }) {
     e.preventDefault();
     axios
       .get(
-        `http://localhost:5000/user/login/${logindetails.email}/${logindetails.password}`
+        `${process.env.REACT_APP_DB_URL}/user/login/${logindetails.email}/${logindetails.password}`
       )
       .then((Response) => {
         // console.log(Response);

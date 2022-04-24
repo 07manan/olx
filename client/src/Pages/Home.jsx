@@ -8,7 +8,7 @@ function Home() {
   const [itemList, setItemlist] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/product/allproducts`).then((Response) => {
+    axios.get(`${process.env.REACT_APP_DB_URL}/product/allproducts`).then((Response) => {
       setItemlist(Response.data);
     });
   }, []);

@@ -5,7 +5,7 @@ import "./comp.css"
 function Items({value, setState, state}) {
 
   const markAsSold= async () =>{
-    await axios.patch(`http://localhost:5000/product/markassold/${value._id}`);
+    await axios.patch(`${process.env.REACT_APP_DB_URL}v/product/markassold/${value._id}`);
     setState(!state);
   }
   return (
@@ -13,7 +13,7 @@ function Items({value, setState, state}) {
       <div className="item easein col-3">
         <p>{value.name}</p>
         <p>{value.price}</p>
-        {(value.unsold) ? ( <p1>Not sold</p1> )  :(<p2>Sold</p2>)}
+        {(value.unsold) ? ( <p style={{color:"red" , fontWeight:"600"} } >Not sold</p> )  :(<p style={{ color:"rgb(0, 209, 0)" , fontWeight:"600" }} >Sold</p>)}
         {(value.unsold) ? ( <button className="btn2" onClick={markAsSold} >Mark as Sold </button> )  :("")}
       </div>
     </>

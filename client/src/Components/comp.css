@@ -139,20 +139,6 @@ body {
   height: fit-content;
 }
 
-.myitems .item p1{
-  color: red;
-  font-weight: 600;
-}
-.myitems .item p2{
-  color: rgb(0, 209, 0);
-  font-weight: 600;
-}
-
-
-.sellitemlist .item p1{
-  color: rgb(0, 209, 0);
-  font-weight: 600;
-}
 
 .btn2 {
   display: block;
