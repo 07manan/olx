@@ -51,13 +51,11 @@ function Profile() {
         exit={{ x: window.innerWidth, transition: { duration: 0.2 } }}
         className="row page container"
       >
-        <h1 style={{ width: "fit-content" }}>
+        <h1 style={{ width: "inherit" }}>
           Hello {JSON.parse(localStorage.getItem("User"))}
         </h1>
         <div className="col-8 row myitems">
-          <h1 style={{ width: "fit-content" }}>
-            Hello {JSON.parse(localStorage.getItem("User"))}
-          </h1>
+          
           {itemList.map((value, key) => {
             return (
               <Items
