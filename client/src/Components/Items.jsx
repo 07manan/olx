@@ -5,7 +5,7 @@ import "./comp.css"
 function Items({value, setState, state}) {
 
   const markAsSold= async () =>{
-    await axios.patch(`${process.env.REACT_APP_DB_URL}v/product/markassold/${value._id}`);
+    await axios.patch(`${process.env.REACT_APP_DB_URL}/product/markassold/${value._id}`);
     setState(!state);
   }
   return (
