@@ -62,24 +62,13 @@ function Navbar({ logout }) {
                     activeclassname="active"
                     to="/profile"
                   >
-                    Profile
+                    My Items
                   </NavLink>
                 </li>
               ) : (
                 ""
               )}
             </ul>
-            {/* <ul className="me-5 logout" >
-              {localStorage.getItem("User") ? (
-                <li>
-                  <button id="logout" onClick={logout}>
-                    Logout
-                  </button>
-                </li>
-              ) : (
-                ""
-              )}
-            </ul> */}
             <ul className="me-5 navbar-nav logout"  >
               {localStorage.getItem("User") ? (
                 <li className="nav-item"  >

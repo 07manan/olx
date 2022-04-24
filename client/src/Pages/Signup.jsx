@@ -4,30 +4,42 @@ import {useNavigate} from "react-router-dom";
 import "./page.css";
 import {motion} from "framer-motion";
 
-function Signup() {
+function Signup({updateUser}) {
   const navigate = useNavigate();
   const [formdetails, setFormDetails] = useState({ firstName:"", lastName:"", email:"", password:"", confirmPassword:"" })
-  const [error, setError] = useState();
+  const [error, setError] = useState({ email:"", password:"" });
   const submitHandler = (e) => {
     e.preventDefault();
     if(formdetails.password === formdetails.confirmPassword){
-      axios.post(`${process.env.REACT_APP_DB_URL}/user/register`,{
-        firstName: formdetails.firstName,
-        lastName: formdetails.lastName,
-        email: formdetails.email,
-        password: formdetails.password
-      })
-      setFormDetails({firstName:"", lastName:"", email:"", password:"", confirmPassword:"" });
-      navigate("/login");
+      if(formdetails.email !==""){
+        if(formdetails.confirmPassword !==""){
+          axios.post(`${process.env.REACT_APP_DB_URL}/user/register`,{
+            firstName: formdetails.firstName,
+            lastName: formdetails.lastName,
+            email: formdetails.email,
+            password: formdetails.password
+          })
+          setFormDetails({firstName:"", lastName:"", email:"", password:"", confirmPassword:"" });
+          setError({password:""});
+          updateUser(formdetails.email);
+          navigate("/profile");
+        } else{
+          setError({password:"Password can't be empty"})
+        }
+      }else{
+        setError({email:"Email can't be empty"})
+      }
+    } else{
+      setError({password:"Passwords do not match"});
     }
   };
   useEffect(() => {
     if(formdetails.confirmPassword !== formdetails.password){
-      setError("Passwords do not match");
+      setError({ password: "Passwords do not match"});
     } else{
-      setError(null);
+      setError({ password:"" });
     }
-  },[formdetails.confirmPassword, formdetails.password]);
+  },[formdetails.confirmPassword]);// eslint-disable-line react-hooks/exhaustive-deps
 
 
   return (
@@ -57,7 +69,6 @@ function Signup() {
               }
               value={formdetails.firstName}
             />
-            {/* <p> {error.firstName?.message} </p> */}
           </div>
           <div className="mb-3 form-field">
             <label htmlFor="exampleInputEmail1" className="form-label">
@@ -74,7 +85,6 @@ function Signup() {
               }
               value={formdetails.lastName}
             />
-            {/* <p> {error.lastName?.message} </p> */}
           </div>
           <div className="mb-3 form-field">
             <label htmlFor="exampleInputEmail1" className="form-label">
@@ -91,7 +101,7 @@ function Signup() {
               }
               value={formdetails.email}
             />
-            {/* <p> {error.email?.message} </p>/ */}
+            {error.email !== "" ? <div className="error">{error.email}</div> : ""}
           </div>
           <div className="mb-3 form-feild">
             <label htmlFor="exampleInputPassword1" className="form-label">
@@ -125,7 +135,7 @@ function Signup() {
               }
               value={formdetails.confirmPassword}
             />
-            {error !== "" ? <div className="error">{error}</div> : ""}
+            {error.password !== "" ? <div className="error">{error.password}</div> : ""}
           </div>
           <input type="submit" value="Register" className="btn" />
         </form>

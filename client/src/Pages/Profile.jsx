@@ -39,7 +39,7 @@ function Profile() {
         exit={{ x: window.innerWidth, transition: {duration: 0.2} }} 
         className="row page container">
         <div className="col-8 row myitems">
-          <h1>My Items</h1>
+          <h1 style={{width:"fit-content"}} >Hello {JSON.parse(localStorage.getItem("User"))}</h1>
           {itemList.map((value,key)=>{
             return (
               <Items key={key} setState={setState} state={state} value={value} />

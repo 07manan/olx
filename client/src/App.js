@@ -37,7 +37,7 @@ function App() {
             exact
             element={<Login updateUser={updateUser} user={user} />}
           />
-          <Route path="/signup" exact element={<Signup user={user} />} />
+          <Route path="/signup" exact element={<Signup updateUser={updateUser} user={user} />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </AnimatePresence>

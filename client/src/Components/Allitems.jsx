@@ -5,7 +5,7 @@ function Allitems({ value }) {
   if (JSON.parse(localStorage.getItem("User")) !== value.email) {
     return (
       <>
-        <div className="item easein col-3">
+        <div className="allitems easein col-3">
           <p>{value.name}</p>
           <p>{value.price}</p>
           {value.unsold ? <p style={{ color:"rgb(0, 209, 0)", fontWeight:"600" }} >Not sold</p> : <p style={{ color:"red", fontWeight:"600"}} >Sold</p>}
