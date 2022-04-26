@@ -44,13 +44,3 @@ export const markAsSold = async (req, res) => {
     }
   });
 };
-
-// export const addAdmin =  async (req,res)=>{
-//   const admin = new Admindata({username:"Admin", password:"Adminpass"});
-//   try {
-//     await admin.save();
-//     res.send("admin data inserted");
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
