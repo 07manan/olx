@@ -3,15 +3,16 @@ import axios from "axios";
 import Allitems from "../Components/Allitems";
 import "./page.css";
 import { motion } from "framer-motion";
+import Loading from "../Components/Loading";
 
 function Home() {
   const [itemList, setItemlist] = useState([]);
-  const [loading, setLoading] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading("Loading...");
+    setLoading(true);
     axios.get(`${process.env.REACT_APP_DB_URL}/product/allproducts`).then((Response) => {
-      setLoading("");
+      setLoading(false);
       setItemlist(Response.data);
     });
   }, []);
@@ -26,7 +27,7 @@ function Home() {
       >
         <h1 >Checkout these awesome items</h1>
         <div className="sellitemlist row">
-          {(loading !=="" )? ( <p> {loading} </p> ):("")  }
+          {(loading )? ( <Loading/> ):("")  }
           {itemList.map((value, key) => {
             return <Allitems key={key} value={value} />;
           })}
