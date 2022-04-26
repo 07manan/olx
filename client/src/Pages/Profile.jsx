@@ -4,17 +4,21 @@ import axios from "axios";
 import "./page.css";
 import Items from "../Components/Items";
 import { motion } from "framer-motion";
+import Loading from "../Components/Loading";
 
 function Profile() {
   const navigate = useNavigate();
   const [state, setState] = useState(true);
   const [itemList, setItemlist] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("User")) == null) {
       navigate("/login");
     }
   });
   useEffect(() => {
+    setLoading(true);
     axios
       .get(
         `${process.env.REACT_APP_DB_URL}/product/getproducts/${JSON.parse(
@@ -24,6 +28,7 @@ function Profile() {
       .then((Response) => {
         setItemlist(Response.data);
       });
+    setLoading(false)
   }, []);
 
   const [itemdetails, setItemdetails] = useState({
@@ -55,7 +60,7 @@ function Profile() {
           Hello {JSON.parse(localStorage.getItem("User"))}
         </h1>
         <div className="col-8 row myitems">
-          
+        {(loading )? ( <Loading/> ):("")  }
           {itemList.map((value, key) => {
             return (
               <Items
