@@ -6,9 +6,12 @@ import { motion } from "framer-motion";
 
 function Home() {
   const [itemList, setItemlist] = useState([]);
+  const [loading, setLoading] = useState("");
 
   useEffect(() => {
+    setLoading("Loading...");
     axios.get(`${process.env.REACT_APP_DB_URL}/product/allproducts`).then((Response) => {
+      setLoading("");
       setItemlist(Response.data);
     });
   }, []);
@@ -23,6 +26,7 @@ function Home() {
       >
         <h1 >Checkout these awesome items</h1>
         <div className="sellitemlist row">
+          {(loading !=="" )? ( <p> {loading} </p> ):("")  }
           {itemList.map((value, key) => {
             return <Allitems key={key} value={value} />;
           })}
