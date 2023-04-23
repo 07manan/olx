@@ -21,7 +21,7 @@ export const loginUser = async (req, res) => {
     if (error) {
       res.send(error);
     } else {
-        res.send(user.password==req.params.password);
+      res.send(req.params.password === user.password);
     }
   });
 };
